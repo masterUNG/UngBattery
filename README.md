@@ -1,16 +1,27 @@
-# battery
+##  คอร์ส สอน Flutter ตัวต่อต่อ เลือก หัวข้อเรียนได้
+### Workshop With มาสเตอร์ อึ่ง
 
-A new Flutter project.
+[![screenshot-1695118062435.png](https://i.postimg.cc/nV6Rzwsg/screenshot-1695118062435.png)](https://postimg.cc/nMGYS2GG)
 
-## Getting Started
+[![screenshot-1695118074602.png](https://i.postimg.cc/sgzTPQ4J/screenshot-1695118074602.png)](https://postimg.cc/svnPs28B)
 
-This project is a starting point for a Flutter application.
+[![screenshot-1695118087801.png](https://i.postimg.cc/XYgQsj26/screenshot-1695118087801.png)](https://postimg.cc/WdhG3vL5)
 
-A few resources to get you started if this is your first Flutter project:
+[![screenshot-1695118126635.png](https://i.postimg.cc/FKsGqMqd/screenshot-1695118126635.png)](https://postimg.cc/VJpj0Vzm)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## ต้องการรายละเอียดเพิ่ม หรือ ต้องการ ปรึกษาการทำ โปรเจคแอนดรอยด์
+### ติดต่อมาสเตอร์ อึ่ง เลย ที่
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+[![IMG_6065.jpg](https://s26.postimg.cc/kajrs6fbt/IMG_6065.jpg)](https://postimg.cc/image/7j5llo5jp/)
+
+https://bit.ly/32yar4n
+
+http://line.me/ti/p/XI-Ksj7Jzq
+
+[![Line-_QR.jpg](https://s26.postimg.cc/dwuoozv15/Line-_QR.jpg)](https://postimg.cc/image/mrvizijth/)
+
+https://www.androidthai.in.th
+
+phrombutr@gmail.com
+
+Mobile 0818595309
