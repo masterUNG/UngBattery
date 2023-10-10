@@ -47,7 +47,10 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       getPages: getPages,
       initialRoute: firstPage,
-      theme: ThemeData(primarySwatch: Colors.green),
+      theme: ThemeData(
+        primarySwatch: Colors.green,
+        scaffoldBackgroundColor: Colors.white,
+      ),
     );
   }
 }

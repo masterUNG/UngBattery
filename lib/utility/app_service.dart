@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:battery/models/moto_model.dart';
 import 'package:battery/models/question_model.dart';
 import 'package:battery/models/user_model.dart';
 import 'package:battery/states/add_motocycle.dart';
@@ -106,6 +107,13 @@ class AppService {
         'https://www.androidthai.in.th/fluttertraining/batteryUng/getMotorWhereIdOwner.php?isAdd=true&idOwner=$idOwner';
 
     await Dio().get(urlApi).then((value) {
+      
+      if (appController.motoModels.isNotEmpty) {
+        appController.motoModels.clear();
+        appController.chooseMotoModels.clear();
+        appController.chooseMotoModels.add(null);
+      }
+
       if (value.toString() == 'null') {
         AppDialog().normalDialog(
           titleWidget: const WidgetText(data: 'ยังไม่มีรถมอเตอร์ไซด์'),
@@ -125,6 +133,11 @@ class AppService {
             },
           ),
         );
+      } else {
+        for (var element in json.decode(value.data)) {
+          MotoModel motoModel = MotoModel.fromMap(element);
+          appController.motoModels.add(motoModel);
+        }
       }
     });
   }
