@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:io';
+import 'dart:math';
 
 import 'package:battery/models/moto_model.dart';
 import 'package:battery/models/question_model.dart';
@@ -12,8 +14,10 @@ import 'package:battery/widgets/widget_text.dart';
 import 'package:battery/widgets/widget_text_button.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:intl/intl.dart';
 
 class AppService {
   AppController appController = Get.put(AppController());
@@ -107,7 +111,6 @@ class AppService {
         'https://www.androidthai.in.th/fluttertraining/batteryUng/getMotorWhereIdOwner.php?isAdd=true&idOwner=$idOwner';
 
     await Dio().get(urlApi).then((value) {
-      
       if (appController.motoModels.isNotEmpty) {
         appController.motoModels.clear();
         appController.chooseMotoModels.clear();
@@ -155,5 +158,81 @@ class AppService {
     await Dio().get(urlApi).then((value) {
       Get.back();
     });
+  }
+
+  Future<Position?> findMyLocation() async {
+    bool locationService = await Geolocator.isLocationServiceEnabled();
+    LocationPermission? locationPermission;
+    Position? position;
+
+    if (locationService) {
+      //เปิด Location
+
+      locationPermission = await Geolocator.checkPermission();
+
+      if (locationPermission == LocationPermission.deniedForever) {
+        AppDialog().normalDialog(
+            titleWidget: const WidgetText(data: 'Please Open Location'),
+            buttonWidget: WidgetTextButton(
+              label: 'Open Persion',
+              pressFunc: () {
+                Geolocator.openAppSettings();
+                exit(0);
+              },
+            ));
+      } else {
+        if (locationPermission == LocationPermission.denied) {
+          //Denied
+          locationPermission = await Geolocator.requestPermission();
+
+          if ((locationPermission != LocationPermission.always) &&
+              (locationPermission != LocationPermission.whileInUse)) {
+            AppDialog().normalDialog(
+                titleWidget: const WidgetText(data: 'Please Open Location'),
+                buttonWidget: WidgetTextButton(
+                  label: 'Open Persion',
+                  pressFunc: () {
+                    Geolocator.openAppSettings();
+                    exit(0);
+                  },
+                ));
+          } else {
+            position = await Geolocator.getCurrentPosition();
+          }
+        } else {
+          position = await Geolocator.getCurrentPosition();
+        }
+      }
+    } else {
+      AppDialog().normalDialog(
+          titleWidget: const WidgetText(data: 'Please Open Location'),
+          buttonWidget: WidgetTextButton(
+            label: 'Open Location',
+            pressFunc: () {
+              Geolocator.openLocationSettings();
+              exit(0);
+            },
+          ));
+    }
+
+    return position;
+  }
+
+  double calculateDistance(double lat1, double lng1, double lat2, double lng2) {
+    double distance = 0;
+
+    var p = 0.017453292519943295;
+    var c = cos;
+    var a = 0.5 -
+        c((lat2 - lat1) * p) / 2 +
+        c(lat1 * p) * c(lat2 * p) * (1 - c((lng2 - lng1) * p)) / 2;
+    distance = 12742 * asin(sqrt(a));
+
+    return distance;
+  }
+
+  String reFormatNumber({required double number}) {
+    NumberFormat numberFormat = NumberFormat('##0.0#', 'en_US');
+    return numberFormat.format(number);
   }
 }

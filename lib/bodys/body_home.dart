@@ -1,7 +1,9 @@
 import 'package:battery/states/add_motocycle.dart';
+import 'package:battery/states/list_near_station.dart';
 import 'package:battery/utility/app_constant.dart';
 import 'package:battery/utility/app_controller.dart';
 import 'package:battery/utility/app_service.dart';
+import 'package:battery/widgets/widget_button.dart';
 import 'package:battery/widgets/widget_icon_button.dart';
 import 'package:battery/widgets/widget_text.dart';
 import 'package:flutter/material.dart';
@@ -157,7 +159,10 @@ class _BodyHomeState extends State<BodyHome> {
                                                         .distance!
                                                         .isEmpty
                                                     ? const SizedBox()
-                                                    : Column(mainAxisAlignment: MainAxisAlignment.center,
+                                                    : Column(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
                                                         crossAxisAlignment:
                                                             CrossAxisAlignment
                                                                 .start,
@@ -196,25 +201,43 @@ class _BodyHomeState extends State<BodyHome> {
                                       ),
                                       Expanded(
                                         flex: 1,
-                                        child: Container(padding: const EdgeInsets.only(left: 12),
+                                        child: Container(
+                                          padding:
+                                              const EdgeInsets.only(left: 12),
                                           height: 150,
                                           decoration:
                                               AppConstant().ballGreyBorder(),
                                           child: appController.chooseMotoModels
                                                   .last!.package!.isEmpty
                                               ? const SizedBox()
-                                              : Column(mainAxisAlignment: MainAxisAlignment.center,crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  const WidgetText(data: 'Package เหลือ'),
-                                                  WidgetText(
-                                                      data:
-                                                         appController.chooseMotoModels.last!.package!, textStyle: AppConstant().h2(),),
-                                                ],
-                                              ),
+                                              : Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    const WidgetText(
+                                                        data: 'Package เหลือ'),
+                                                    WidgetText(
+                                                      data: appController
+                                                          .chooseMotoModels
+                                                          .last!
+                                                          .package!,
+                                                      textStyle:
+                                                          AppConstant().h2(),
+                                                    ),
+                                                  ],
+                                                ),
                                         ),
                                       ),
                                     ],
                                   ),
+                            WidgetButton(
+                              label: 'Near Station',
+                              pressFunc: () {
+                                Get.to(const ListNearStation());  
+                              },
+                            ),
                           ],
                         ),
                 ],
