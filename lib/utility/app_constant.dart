@@ -8,17 +8,26 @@ class AppConstant {
         fontSize: 36,
         fontWeight: FontWeight.bold,
         color: color,
+        fontFamily: 'Anakotmai',
       );
   TextStyle h2({Color? color}) => TextStyle(
-        fontSize: 20,
+        fontSize: 22,
         fontWeight: FontWeight.w700,
         color: color,
+        fontFamily: 'Anakotmai',
+      );
+  TextStyle h3({Color? color}) => TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.normal,
+        color: color,
+        fontFamily: 'Anakotmai',
       );
 
   TextStyle h2White({Color? color}) => TextStyle(
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: FontWeight.bold,
         color: color ?? Colors.white,
+        fontFamily: 'Anakotmai',
       );
 
   BoxDecoration curveWhite() => const BoxDecoration(
