@@ -82,6 +82,10 @@ class _RegisterState extends State<Register> {
                     const SizedBox(
                       height: 32,
                     ),
+
+
+
+
                     const Icon(Icons.directions_bike),
                     const SizedBox(
                       height: 16,
@@ -141,6 +145,13 @@ class _RegisterState extends State<Register> {
                     const SizedBox(
                       height: 32,
                     ),
+
+
+
+
+
+
+                    
                     const Icon(Icons.lock),
                     const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -198,7 +209,8 @@ class _RegisterState extends State<Register> {
                         WidgetText(data: 'ตั้งรหัสล๊อคอิน'),
                       ],
                     ),
-                    WidgetForm(obcecu: true,
+                    WidgetForm(
+                      obcecu: true,
                       textEditingController: passwordController,
                       hint: 'พิมพ์รหัสของคุณ',
                     ),
@@ -211,7 +223,8 @@ class _RegisterState extends State<Register> {
                         WidgetText(data: 'ยืนยันรหัสล๊อคอิน'),
                       ],
                     ),
-                    WidgetForm(obcecu: true,
+                    WidgetForm(
+                      obcecu: true,
                       hint: 'ยืนยันรหัสของคุณ',
                       textEditingController: rePasswordController,
                     ),
@@ -262,8 +275,10 @@ class _RegisterState extends State<Register> {
                                   'Password ?', 'Please Fill Password');
                             } else if (rePasswordController.text.isEmpty) {
                               Get.snackbar('Repass ?', 'Please Fill Repass');
-                            } else if (passwordController.text != rePasswordController.text) {
-                               Get.snackbar('Password Not Math ?', 'กรุณาพิมพ์ passwrod ให้เหมือกัน');
+                            } else if (passwordController.text !=
+                                rePasswordController.text) {
+                              Get.snackbar('Password Not Math ?',
+                                  'กรุณาพิมพ์ passwrod ให้เหมือกัน');
                             } else if (appController
                                     .chooseQuestionModels.last ==
                                 null) {
@@ -279,16 +294,13 @@ class _RegisterState extends State<Register> {
                                   nameSur: nameController.text,
                                   phone: phoneController.text,
                                   email: emailController.text,
-                                  brand: brandController.text,
-                                  numberModel: numberModelController.text,
-                                  model: modelController.text,
-                                  color: colorController.text,
-                                  nicName: nicNameController.text,
-                                  idQuestion: appController.chooseQuestionModels.last!.id,
+                                  idQuestion: appController
+                                      .chooseQuestionModels.last!.id,
                                   answer: answerController.text,
                                   password: passwordController.text);
 
-                              AppService().processRegister(userModel: userModel);
+                              AppService()
+                                  .processRegister(userModel: userModel);
                             }
                           },
                           bgColor: AppConstant.greenColor,

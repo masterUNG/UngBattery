@@ -104,12 +104,12 @@ class _AuthenState extends State<Authen> {
                                 }
                               },
                             ),
-                            WidgetTextButton(
-                              label: 'ยังไม่มีบัญชี',
-                              pressFunc: () {
-                                Get.to(const Register());
-                              },
-                            )
+                            // WidgetTextButton(
+                            //   label: 'ยังไม่มีบัญชี',
+                            //   pressFunc: () {
+                            //     Get.to(const Register());
+                            //   },
+                            // ),
                           ],
                         ),
                       ],

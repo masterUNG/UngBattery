@@ -2,9 +2,13 @@ import 'dart:convert';
 
 import 'package:battery/models/question_model.dart';
 import 'package:battery/models/user_model.dart';
+import 'package:battery/states/add_motocycle.dart';
 import 'package:battery/states/main_home.dart';
 import 'package:battery/utility/app_constant.dart';
 import 'package:battery/utility/app_controller.dart';
+import 'package:battery/utility/app_dialog.dart';
+import 'package:battery/widgets/widget_text.dart';
+import 'package:battery/widgets/widget_text_button.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -31,8 +35,7 @@ class AppService {
   }
 
   Future<void> processRegister({required UserModel userModel}) async {
-    String urlApi =
-        'https://www.androidthai.in.th/fluttertraining/batteryUng/insertUser.php?isAdd=true&nameSur=${userModel.nameSur}&phone=${userModel.phone}&email=${userModel.email}&brand=${userModel.brand}&numberModel=${userModel.numberModel}&model=${userModel.model}&color=${userModel.color}&nicName=${userModel.nicName}&idQuestion=${userModel.idQuestion}&answer=${userModel.answer}&password=${userModel.password}';
+    String urlApi = '';
 
     await Dio().get(urlApi).then((value) {
       Get.back();
@@ -94,6 +97,50 @@ class AppService {
   Future<void> findUserModelLogin() async {
     var data = GetStorage().read('data');
     UserModel model = UserModel.fromMap(data);
+    print('## userModelLosin---> ${model.toMap()}');
     appController.userModelLogins.add(model);
+  }
+
+  Future<void> checkHaveMotocycle({required String idOwner}) async {
+    String urlApi =
+        'https://www.androidthai.in.th/fluttertraining/batteryUng/getMotorWhereIdOwner.php?isAdd=true&idOwner=$idOwner';
+
+    await Dio().get(urlApi).then((value) {
+      if (value.toString() == 'null') {
+        AppDialog().normalDialog(
+          titleWidget: const WidgetText(data: 'ยังไม่มีรถมอเตอร์ไซด์'),
+          contentWidget:
+              const WidgetText(data: 'โปรด Add MotorCycle อย่างน้อง 1 คัน'),
+          firstButtonWidget: WidgetTextButton(
+            label: 'Add MotoCycle',
+            pressFunc: () {
+              Get.back();
+              Get.to(const AddMotocycle());
+            },
+          ),
+          buttonWidget: WidgetTextButton(
+            label: 'Cancel',
+            pressFunc: () {
+              Get.back();
+            },
+          ),
+        );
+      }
+    });
+  }
+
+  Future<void> processAddMotocycle({
+    required String brand,
+    required String numberModel,
+    required String model,
+    required String color,
+    required String nicName,
+  }) async {
+    String urlApi =
+        'https://www.androidthai.in.th/fluttertraining/batteryUng/addNewMotoCycle.php?isAdd=true&idOwner=${appController.userModelLogins.last.id}&brand=$brand&numberModel=$numberModel&model=$model&color=$color&nickname=$nicName';
+
+    await Dio().get(urlApi).then((value) {
+      Get.back();
+    });
   }
 }

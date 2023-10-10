@@ -7,17 +7,20 @@ class WidgetForm extends StatelessWidget {
     this.obcecu,
     this.hint,
     this.textEditingController,
+    this.validateFunc,
   }) : super(key: key);
 
   final bool? obcecu;
   final String? hint;
   final TextEditingController? textEditingController;
+  final String? Function(String?)? validateFunc;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 40,
+      height: validateFunc == null ? 40 : null,
       child: TextFormField(
+        validator: validateFunc,
         controller: textEditingController,
         textAlign: TextAlign.center,
         obscureText: obcecu ?? false,
